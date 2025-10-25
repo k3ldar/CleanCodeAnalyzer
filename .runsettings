@@ -1,0 +1,23 @@
+<RunSettings>
+  <DataCollectionRunSettings>
+    <DataCollectors>
+      <DataCollector friendlyName="Code Coverage">
+        <Configuration>
+          <CodeCoverage>
+            <ModulePaths>
+              <Exclude>
+                <ModulePath>.*\.Test\.dll$</ModulePath>
+                <ModulePath>.*\.Tests\.dll$</ModulePath>
+                <ModulePath>.*microsoft\.codeanalysis\..*\.testing\.dll$</ModulePath>
+                <ModulePath>.*mstest\..*\.dll$</ModulePath>
+                <ModulePath>.*xunit\..*\.dll$</ModulePath>
+                <ModulePath>.*nunit\..*\.dll$</ModulePath>
+                <ModulePath>.*\\Microsoft\..*\.dll$</ModulePath>
+              </Exclude>
+            </ModulePaths>
+          </CodeCoverage>
+        </Configuration>
+      </DataCollector>
+    </DataCollectors>
+  </DataCollectionRunSettings>
+</RunSettings>
