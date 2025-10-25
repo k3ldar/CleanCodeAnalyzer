@@ -1,0 +1,73 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36616.10
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanCodeAnalyzer", "CleanCodeAnalyzer\CleanCodeAnalyzer\CleanCodeAnalyzer.csproj", "{30934E4B-5759-42F8-9A18-F805A1E632C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanCodeAnalyzer.CodeFixes", "CleanCodeAnalyzer\CleanCodeAnalyzer.CodeFixes\CleanCodeAnalyzer.CodeFixes.csproj", "{EA7A9005-7A92-4F2B-AA15-9A283C249927}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanCodeAnalyzer.Package", "CleanCodeAnalyzer\CleanCodeAnalyzer.Package\CleanCodeAnalyzer.Package.csproj", "{0FB42AEC-069F-42AB-85AC-854387F34176}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanCodeAnalyzer.Test", "CleanCodeAnalyzer\CleanCodeAnalyzer.Test\CleanCodeAnalyzer.Test.csproj", "{4E7CC0FE-DE37-4364-82E7-82CFD2C32C06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanCodeAnalyzer.Vsix", "CleanCodeAnalyzer\CleanCodeAnalyzer.Vsix\CleanCodeAnalyzer.Vsix.csproj", "{18900432-E222-4721-AC55-012F7598DEB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{0E1AEE53-41A4-4D71-B1EC-2C5828A714B0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
+	ProjectSection(SolutionItems) = preProject
+		.runsettings = .runsettings
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		Docs\documentation-comment-discipline.md = Docs\documentation-comment-discipline.md
+		Docs\line-length-constraints.md = Docs\line-length-constraints.md
+		Docs\magic-numbers.md = Docs\magic-numbers.md
+		Docs\no-chained-assignments.md = Docs\no-chained-assignments.md
+		Docs\one-statement-per-line.md = Docs\one-statement-per-line.md
+		Docs\protected-fields.md = Docs\protected-fields.md
+		Docs\string-literal-duplication.md = Docs\string-literal-duplication.md
+		Docs\vertical-spacing-and-structural-rythm.md = Docs\vertical-spacing-and-structural-rythm.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{30934E4B-5759-42F8-9A18-F805A1E632C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30934E4B-5759-42F8-9A18-F805A1E632C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30934E4B-5759-42F8-9A18-F805A1E632C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30934E4B-5759-42F8-9A18-F805A1E632C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA7A9005-7A92-4F2B-AA15-9A283C249927}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA7A9005-7A92-4F2B-AA15-9A283C249927}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA7A9005-7A92-4F2B-AA15-9A283C249927}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA7A9005-7A92-4F2B-AA15-9A283C249927}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FB42AEC-069F-42AB-85AC-854387F34176}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FB42AEC-069F-42AB-85AC-854387F34176}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FB42AEC-069F-42AB-85AC-854387F34176}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FB42AEC-069F-42AB-85AC-854387F34176}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E7CC0FE-DE37-4364-82E7-82CFD2C32C06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E7CC0FE-DE37-4364-82E7-82CFD2C32C06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E7CC0FE-DE37-4364-82E7-82CFD2C32C06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E7CC0FE-DE37-4364-82E7-82CFD2C32C06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18900432-E222-4721-AC55-012F7598DEB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18900432-E222-4721-AC55-012F7598DEB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18900432-E222-4721-AC55-012F7598DEB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18900432-E222-4721-AC55-012F7598DEB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E1AEE53-41A4-4D71-B1EC-2C5828A714B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E1AEE53-41A4-4D71-B1EC-2C5828A714B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E1AEE53-41A4-4D71-B1EC-2C5828A714B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E1AEE53-41A4-4D71-B1EC-2C5828A714B0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F8D830F6-A88A-4E71-A12F-FB47105C09A0}
+	EndGlobalSection
+EndGlobal
