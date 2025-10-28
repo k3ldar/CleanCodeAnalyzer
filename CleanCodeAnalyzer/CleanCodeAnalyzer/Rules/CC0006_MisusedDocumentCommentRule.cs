@@ -158,29 +158,5 @@ namespace CleanCodeAnalyzer.Rules
                    node is NamespaceDeclarationSyntax ||
                    node is FileScopedNamespaceDeclarationSyntax;
         }
-
-        private static bool IsInsideMethodBody(SyntaxNode node)
-        {
-            // Walk up and check if we're inside a block (method body, if statement, loop, etc.)
-            var current = node;
-            while (current != null)
-            {
-                // If we hit a block before hitting a declaration, we're inside a method body
-                if (current is BlockSyntax)
-                {
-                    return true;
-                }
-
-                // If we hit a member declaration, we're at the declaration level
-                if (IsValidDocumentationTarget(current))
-                {
-                    return false;
-                }
-
-                current = current.Parent;
-            }
-
-            return false;
-        }
     }
 }

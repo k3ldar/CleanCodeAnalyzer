@@ -38,6 +38,23 @@ namespace CleanCodeAnalyzer.Rules
                     continue;
                 }
 
+                // If the closing brace is not the first non-whitespace character on its line,
+                // it's part of a single-line construct (e.g., `public int X { get; set; }`) and
+                // we should not report a blank-line-before-closing-brace diagnostic for that case.
+                var lineStart = text.Lines[closingBraceLine].Start;
+                var bracePosition = closingBrace.SpanStart;
+
+                if (bracePosition > lineStart)
+                {
+                    var leadingTextSpan = Microsoft.CodeAnalysis.Text.TextSpan.FromBounds(lineStart, bracePosition);
+                    var leadingText = text.ToString(leadingTextSpan);
+                    if (!string.IsNullOrWhiteSpace(leadingText))
+                    {
+                        // There is non-whitespace text before the closing brace on the same line -> skip
+                        continue;
+                    }
+                }
+
                 // Get the line immediately above the closing brace
                 var lineAbove = closingBraceLine - 1;
                 var lineAboveText = text.Lines[lineAbove].ToString().Trim();

@@ -9,7 +9,7 @@ namespace CleanCodeAnalyzer.Rules
         public static readonly DiagnosticDescriptor Rule = new(
             "CC0004",
             "If statement should have exactly one blank line above it",
-            "If statements should be preceded by exactly one blank line for better readability",
+            "If statements should be preceded by exactly one blank line for consistent readability",
             "Style",
             DiagnosticSeverity.Info,
             isEnabledByDefault: true,
@@ -68,6 +68,17 @@ namespace CleanCodeAnalyzer.Rules
             // Check if the previous non-blank line is a block opening brace
             var previousLineText = text.Lines[checkLine].ToString().Trim();
             if (previousLineText == "{" || previousLineText.EndsWith("{"))
+            {
+                return;
+            }
+
+            // Skip if the previous non-blank line is a comment or a preprocessor directive (e.g. #if/#endif)
+            // This avoids flagging cases where an if is preceded directly by comments or directives
+            if (previousLineText.StartsWith("//")
+                || previousLineText.StartsWith("/*")
+                || previousLineText.StartsWith("*")
+                || previousLineText.EndsWith("*/")
+                || previousLineText.StartsWith("#"))
             {
                 return;
             }
