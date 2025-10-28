@@ -29,8 +29,12 @@ namespace CleanCodeAnalyzer.Rules
                 var hasInternalModifier = fieldDeclaration.Modifiers
                     .Any(m => m.IsKind(SyntaxKind.InternalKeyword));
 
-                // Only report if it's protected but not protected internal
-                if (hasProtectedModifier && !hasInternalModifier)
+                // Check if the field is const or readonly (these are safe)
+                var isConstOrReadonly = fieldDeclaration.Modifiers
+                    .Any(m => m.IsKind(SyntaxKind.ConstKeyword) || m.IsKind(SyntaxKind.ReadOnlyKeyword));
+
+                // Only report if it's protected but not protected internal, and not const or readonly
+                if (hasProtectedModifier && !hasInternalModifier && !isConstOrReadonly)
                 {
                     // Report diagnostic for each variable declared in this field declaration
                     foreach (var variable in fieldDeclaration.Declaration.Variables)

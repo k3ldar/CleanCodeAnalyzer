@@ -231,7 +231,7 @@ namespace TestNamespace
         }
 
         [TestMethod]
-        public async Task TestProtectedReadonlyField_ReportsDiagnostic()
+        public async Task TestProtectedReadonlyField_NoDiagnostic()
         {
             var test = @"
 using System;
@@ -243,11 +243,8 @@ namespace TestNamespace
         protected readonly int readonlyProtectedField;
     }
 }";
-            var expected = VerifyCS.Diagnostic("CC0007")
-                .WithSpan(8, 32, 8, 54)
-                .WithArguments("readonlyProtectedField");
-
-            await VerifyCS.VerifyAnalyzerAsync(test, expected);
+            // readonly protected fields should no longer report a diagnostic
+            await VerifyCS.VerifyAnalyzerAsync(test);
         }
 
         [TestMethod]
@@ -264,12 +261,7 @@ namespace TestNamespace
     }
 }";
             // const fields are implicitly static and don't have instance state issues
-            // but the rule will still catch them if they have protected modifier
-            var expected = VerifyCS.Diagnostic("CC0007")
-                .WithSpan(8, 29, 8, 39)
-                .WithArguments("ConstField");
-
-            await VerifyCS.VerifyAnalyzerAsync(test, expected);
+            await VerifyCS.VerifyAnalyzerAsync(test);
         }
 
         [TestMethod]

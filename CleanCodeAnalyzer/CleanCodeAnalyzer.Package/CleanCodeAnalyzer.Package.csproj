@@ -5,15 +5,15 @@
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	<BuildVersion>1.1.0</BuildVersion>
   </PropertyGroup>
 
   <PropertyGroup>
     <PackageId>CleanCodeAnalyzer</PackageId>
-    <PackageVersion>1.0.0.0</PackageVersion>
+    <PackageVersion>$(BuildVersion)</PackageVersion>
     <Authors>Si Carter</Authors>
-    <PackageLicenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</PackageLicenseUrl>
+    <PackageLicenseUrl>https://github.com/k3ldar/CleanCodeAnalyzer?tab=GPL-3.0-1-ov-file#readme</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/k3ldar/CleanCodeAnalyzer</PackageProjectUrl>
-    <PackageIconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</PackageIconUrl>
     <RepositoryUrl>https://github.com/k3ldar/CleanCodeAnalyzer</RepositoryUrl>
     <Description>A C# code analyzer enforcing clarity-driven style rules to reduce cognitive load and boost maintainability.</Description>
     <PackageReleaseNotes>Initial release includes 10 analyzers</PackageReleaseNotes>
@@ -35,6 +35,10 @@
     <EnableNETAnalyzers>True</EnableNETAnalyzers>
 
     <AnalysisLevel>latest</AnalysisLevel>
+
+    <AssemblyVersion>$(BuildVersion).0</AssemblyVersion>
+
+    <FileVersion>$(BuildVersion).0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -45,8 +49,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CleanCodeAnalyzer.CodeFixes\CleanCodeAnalyzer.CodeFixes.csproj" />
-    <ProjectReference Include="..\CleanCodeAnalyzer\CleanCodeAnalyzer.csproj" />
+    <ProjectReference Include="..\CleanCodeAnalyzer.CodeFixes\CleanCodeAnalyzer.CodeFixes.csproj" PrivateAssets="all" />
+    <ProjectReference Include="..\CleanCodeAnalyzer\CleanCodeAnalyzer.csproj" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>

@@ -77,6 +77,10 @@ namespace CleanCodeAnalyzer.Rules
                 if (IsWithinConstDeclaration(literal))
                     return;
 
+                // Skip if inside an attribute (e.g. SuppressMessage) or attribute argument
+                if (IsWithinAttribute(literal))
+                    return;
+
                 // Skip interpolated strings (handled separately)
                 if (literal.Token.Text.StartsWith("$"))
                     return;
@@ -87,7 +91,7 @@ namespace CleanCodeAnalyzer.Rules
                     return;
 
                 if (!literals.ContainsKey(literalValue))
-                    literals[literalValue] = [];
+                    literals[literalValue] = new List<LiteralExpressionSyntax>();
 
                 literals[literalValue].Add(literal);
             }
@@ -111,6 +115,17 @@ namespace CleanCodeAnalyzer.Rules
 
                 if (parent is LocalDeclarationStatementSyntax localDecl &&
                     localDecl.Modifiers.Any(m => m.IsKind(SyntaxKind.ConstKeyword)))
+                    return true;
+            }
+
+            return false;
+        }
+
+        private static bool IsWithinAttribute(LiteralExpressionSyntax literal)
+        {
+            for (var node = literal.Parent; node != null; node = node.Parent)
+            {
+                if (node is AttributeArgumentSyntax || node is AttributeSyntax || node is AttributeListSyntax)
                     return true;
             }
 

@@ -333,7 +333,6 @@ namespace TestNamespace
         }
     }
 }";
-            // Only CC0005 should report (first if needs blank line below)
             // CC0004 should NOT report because the previous statement is a control flow block
             var expected = VerifyCS.Diagnostic("CC0005")
                 .WithSpan(15, 13, 15, 14);

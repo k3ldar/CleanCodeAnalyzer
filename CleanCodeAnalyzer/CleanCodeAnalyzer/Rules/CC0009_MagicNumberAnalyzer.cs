@@ -58,8 +58,8 @@ namespace CleanCodeAnalyzer.Rules
             if (literal.Ancestors().OfType<AttributeArgumentSyntax>().Any())
                 return;
 
-            // Already part of a const declaration.
-            if (IsWithinConstDeclaration(literal))
+            // Already part of a const or readonly declaration.
+            if (IsWithinConstOrReadonlyDeclaration(literal))
                 return;
 
             // Skip default literal forms.
@@ -83,7 +83,7 @@ namespace CleanCodeAnalyzer.Rules
             context.ReportDiagnostic(diagnostic);
         }
 
-        private static bool IsWithinConstDeclaration(LiteralExpressionSyntax literal)
+        private static bool IsWithinConstOrReadonlyDeclaration(LiteralExpressionSyntax literal)
         {
             if (literal.Parent is EqualsValueClauseSyntax equals &&
                 equals.Parent is VariableDeclaratorSyntax declarator)
@@ -91,7 +91,7 @@ namespace CleanCodeAnalyzer.Rules
                 var parent = declarator.Parent?.Parent;
 
                 if (parent is FieldDeclarationSyntax fieldDecl &&
-                    fieldDecl.Modifiers.Any(m => m.IsKind(SyntaxKind.ConstKeyword)))
+                    fieldDecl.Modifiers.Any(m => m.IsKind(SyntaxKind.ConstKeyword) || m.IsKind(SyntaxKind.ReadOnlyKeyword)))
                     return true;
 
                 if (parent is LocalDeclarationStatementSyntax localDecl &&
@@ -104,10 +104,9 @@ namespace CleanCodeAnalyzer.Rules
 
         private static bool IsLoopInitializer(LiteralExpressionSyntax literal)
         {
-            // for (int i = 0; i < N; i++) -> allow the '0'
             return literal.Parent is EqualsValueClauseSyntax evc &&
-                   evc.Parent is VariableDeclaratorSyntax vd &&
-                   vd.Parent?.Parent is ForStatementSyntax;
+                evc.Parent is VariableDeclaratorSyntax vd &&
+                vd.Parent?.Parent is ForStatementSyntax;
         }
     }
 }
