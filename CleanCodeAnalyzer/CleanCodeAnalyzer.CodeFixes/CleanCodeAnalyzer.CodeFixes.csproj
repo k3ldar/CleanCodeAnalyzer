@@ -4,10 +4,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <IsPackable>false</IsPackable>
     <RootNamespace>Analyzer1</RootNamespace>
+	<Version>$(Version)</Version>
+	<AssemblyVersion>$(AssemblyVersion)</AssemblyVersion>
+	<FileVersion>$(FileVersion)</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.14.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="4.11.0" />
   </ItemGroup>
 
   <ItemGroup>

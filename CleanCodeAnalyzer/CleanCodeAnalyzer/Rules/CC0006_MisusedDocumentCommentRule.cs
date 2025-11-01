@@ -47,18 +47,16 @@ namespace CleanCodeAnalyzer.Rules
                     }
                 }
                 // Check for actual documentation comments
-                else if (trivia.IsKind(SyntaxKind.SingleLineDocumentationCommentTrivia))
+                // Check if this comment is attached to a valid documentation target
+                else if (trivia.IsKind(SyntaxKind.SingleLineDocumentationCommentTrivia) && 
+                    !IsAttachedToValidDeclaration(trivia))
                 {
-                    // Check if this comment is attached to a valid documentation target
-                    if (!IsAttachedToValidDeclaration(trivia))
-                    {
-                        var location = GetCommentLocation(trivia, sourceText);
+                    var location = GetCommentLocation(trivia, sourceText);
 
-                        var diagnostic = Diagnostic.Create(
-                            Rule,
-                            location);
-                        context.ReportDiagnostic(diagnostic);
-                    }
+                    var diagnostic = Diagnostic.Create(
+                        Rule,
+                        location);
+                    context.ReportDiagnostic(diagnostic);
                 }
             }
         }
@@ -124,13 +122,12 @@ namespace CleanCodeAnalyzer.Rules
                     // not on a token inside the declaration's body
 
                     // For members with bodies (methods, properties with bodies, etc.)
-                    if (current is MethodDeclarationSyntax methodDecl && methodDecl.Body != null)
+                    // If the token is inside the body, it's not valid
+                    if (current is MethodDeclarationSyntax methodDecl && 
+                        methodDecl.Body != null &&
+                        methodDecl.Body.Span.Contains(token.Span))
                     {
-                        // If the token is inside the body, it's not valid
-                        if (methodDecl.Body.Span.Contains(token.Span))
-                        {
-                            return false;
-                        }
+                        return false;
                     }
 
                     return true;
