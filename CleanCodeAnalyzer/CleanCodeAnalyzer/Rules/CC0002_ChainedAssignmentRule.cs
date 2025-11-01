@@ -33,19 +33,17 @@ namespace CleanCodeAnalyzer.Rules
             }
 
             // Check if the right side is another assignment expression
-            if (assignment.Right is AssignmentExpressionSyntax)
+            // Only report if this assignment is NOT itself on the right side of another assignment
+            // This ensures we only report once per chained assignment at the outermost level
+            if (assignment.Right is AssignmentExpressionSyntax &&
+                (assignment.Parent is not AssignmentExpressionSyntax parentAssignment ||
+                    parentAssignment.Right != assignment))
             {
-                // Only report if this assignment is NOT itself on the right side of another assignment
-                // This ensures we only report once per chained assignment at the outermost level
-                if (assignment.Parent is not AssignmentExpressionSyntax parentAssignment ||
-                    parentAssignment.Right != assignment)
-                {
-                    // Find the parent statement to include the semicolon
-                    var statement = assignment.FirstAncestorOrSelf<StatementSyntax>();
-                    var diagnosticLocation = statement != null ? statement.GetLocation() : assignment.GetLocation();
-                    var diagnostic = Diagnostic.Create(Rule, diagnosticLocation);
-                    context.ReportDiagnostic(diagnostic);
-                }
+                // Find the parent statement to include the semicolon
+                var statement = assignment.FirstAncestorOrSelf<StatementSyntax>();
+                var diagnosticLocation = statement != null ? statement.GetLocation() : assignment.GetLocation();
+                var diagnostic = Diagnostic.Create(Rule, diagnosticLocation);
+                context.ReportDiagnostic(diagnostic);
             }
         }
     }

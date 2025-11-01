@@ -2,6 +2,9 @@
 
 namespace ConsoleApp1
 {
+    /// <summary>
+    /// Class to test errors
+    /// </summary>
     internal class TestErrors
     {
         protected const int _constantValue = 42;

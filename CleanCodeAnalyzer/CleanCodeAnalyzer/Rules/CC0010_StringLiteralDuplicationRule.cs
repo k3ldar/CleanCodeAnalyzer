@@ -91,7 +91,7 @@ namespace CleanCodeAnalyzer.Rules
                     return;
 
                 if (!literals.ContainsKey(literalValue))
-                    literals[literalValue] = new List<LiteralExpressionSyntax>();
+                    literals[literalValue] = [];
 
                 literals[literalValue].Add(literal);
             }

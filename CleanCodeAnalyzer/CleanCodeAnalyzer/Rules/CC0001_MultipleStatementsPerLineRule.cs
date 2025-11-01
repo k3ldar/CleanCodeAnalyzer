@@ -69,15 +69,12 @@ namespace CleanCodeAnalyzer.Rules
 
         private SyntaxList<StatementSyntax>? GetStatements(SyntaxNode node)
         {
-            switch (node)
+            return node switch
             {
-                case BlockSyntax block:
-                    return block.Statements;
-                case SwitchSectionSyntax switchSection:
-                    return switchSection.Statements;
-                default:
-                    return null;
-            }
+                BlockSyntax block => (SyntaxList<StatementSyntax>?)block.Statements,
+                SwitchSectionSyntax switchSection => (SyntaxList<StatementSyntax>?)switchSection.Statements,
+                _ => null,
+            };
         }
     }
 }
